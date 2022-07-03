@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>In Room</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="camera.png" type="image/x-icon">
+</head>
+
+<body>
+  <div id="chatContainer">
+    <div id="chats"></div>
+    <input contenteditable placeholder="Send a Message" id="chatInput"></input>
+  </div>
+  <div>
+    <img id="stream" src="waiting.png">
+    <b id="streamUsername"></b>
+    <button id="startStream">Claim Room</button>
+  </div>
+  <video id="output" hidden autoplay width="256" height="192"></video>
+  <canvas id="data" width="256" hidden height="192"></canvas>
+  <script src="https://simplesocket.net/static/v2/SimpleSocket.js"></script>
+  <script src="stream.js"></script>
+</body>
+
+</html>
