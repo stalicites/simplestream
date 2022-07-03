@@ -66,7 +66,7 @@ const chats = document.getElementById("chats");
 
 function createChat(message, username, color) {
   let chat = document.createElement("span");
-  chat.innerHTML = `<b style="color:${color}">${username}</b> – ${message}`.replace(/</g, "&lt;")
+  chat.innerHTML = `<b style="color:${color}">${username.replace(/</g, "&lt;")}</b> – ${message.replace(/</g, "&lt;")}`
   chats.appendChild(chat);
   let linebreak = document.createElement("br");
   chats.appendChild(linebreak);
