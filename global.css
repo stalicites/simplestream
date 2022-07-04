@@ -1,1 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Finlandica:ital@1&display=swap');
 
+* {
+    font-family: 'Finlandica', sans-serif;
+    color: white;
+}
+
+body {
+    background-color: #282828;
+}
+
+font {
+    color: #EC6F63;
+}
+
+button {
+    width: 120px;
+    height: 30px;
+    background-color: #EC6F63;
+    border-radius: 5px;
+    border-width: 0px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #a5544d;
+}
+
+input {
+    height: 25px;
+    border-radius: 5px;
+    border-width: 0px;
+    width: 275px;
+    outline: none;
+    background-color: rgb(74, 74, 74);
+    padding: 2.5px;
+}
