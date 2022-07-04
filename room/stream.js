@@ -35,11 +35,13 @@ startStreamButton.addEventListener('click', async function () {
   document.title = "Brodcasting Stream | " + roomCode;
   streamUsername.innerText = username;
   setInterval(function () {
-    data.getContext('2d').drawImage(output, 0, 0, data.width, data.height);
-    let frame = data.toDataURL('image/jpeg');
-    stream.src = frame;
+    if(!document.hidden){
+      data.getContext('2d').drawImage(output, 0, 0, data.width, data.height);
+      let frame = data.toDataURL('image/jpeg');
+      stream.src = frame;
 
-    socket.publish({ s: roomCode, t: "f" }, { f: encode(frame), u: username });
+      socket.publish({ s: roomCode, t: "f" }, { f: encode(frame), u: username });
+    }
   }, 128);
   startStreamButton.remove();
 });
