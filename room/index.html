@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>In Room</title>
   <link href="style.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="../global.css"/>
   <link rel="shortcut icon" href="camera.png" type="image/x-icon">
 </head>
 
@@ -14,10 +15,16 @@
     <div id="chats"></div>
     <input contenteditable placeholder="Send a Message" id="chatInput"></input>
   </div>
-  <div>
+  <div id = "streamContainer">
     <img id="stream" src="waiting.png">
     <b id="streamUsername"></b>
-    <button id="startStream">Claim Room</button>
+    <div>
+      <button id="startStreamCamera">Claim Room</button>
+      <button id = "startStreamScreen">Stream Screen</button>
+      <a href="../">
+        <button>Exit Stream</button>
+      </a>
+    </div>
   </div>
   <video id="output" hidden autoplay width="256" height="192"></video>
   <canvas id="data" width="256" hidden height="192"></canvas>
