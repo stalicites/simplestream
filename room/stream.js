@@ -4,6 +4,7 @@ const socket = new SimpleSocket({
 });
 
 const roomCode = location.href.slice(location.href.indexOf("#") + 1);
+
 let username = localStorage.getItem("username");
 if (!username) {
   username = prompt("Enter Username");
@@ -31,6 +32,7 @@ const color = '#' + Math.floor(Math.random() * 16777215).toString(16);
 
 //Claim Room
 let streamOutput;
+let compression = 0.5;
 
 startStreamCameraButton.addEventListener('click', async function () {
   streamOutput = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
@@ -38,6 +40,7 @@ startStreamCameraButton.addEventListener('click', async function () {
 });
 startStreamScreenButton.addEventListener('click', async function () {
   streamOutput = await navigator.mediaDevices.getDisplayMedia({ video: { cursor: "always" }, audio: false });
+  compression = 1;
   startStream();
 });
 
@@ -46,14 +49,12 @@ function startStream() {
   document.title = "Brodcasting Stream | " + roomCode;
   streamUsername.innerText = username;
   setInterval(function () {
-    if (!document.hidden) {
       data.getContext('2d').drawImage(output, 0, 0, data.width, data.height);
-      let frame = data.toDataURL('image/jpeg', 0.5);
+      let frame = data.toDataURL('image/jpeg', compression);
       stream.src = frame;
 
       socket.publish({ s: roomCode, t: "f" }, { f: encode(frame), u: username });
-    }
-  }, 64);
+  }, 128);
   startStreamCameraButton.remove();
   startStreamScreenButton.remove();
 }
@@ -84,7 +85,7 @@ const chats = document.getElementById("chats");
 
 function createChat(message, username, color) {
   let chat = document.createElement("span");
-  chat.innerHTML = `<b style="color:${color}">${username.replace(/</g, "&lt;")}</b> – ${message.replace(/</g, "&lt;")}`
+  chat.innerHTML = `<b style="color:${color.slice(0,7)}">${username.replace(/</g, "&lt;")}</b> – ${message.replace(/</g, "&lt;")}`
   chats.appendChild(chat);
   let linebreak = document.createElement("br");
   chats.appendChild(linebreak);
